@@ -1,16 +1,32 @@
 const textInput = document.getElementById('taskInput');
 const taskList = document.getElementById('taskList');
 
-
-function addTask(){
+function addTask() {
   const temTexto = textInput.value.trim();
-  if(temTexto != '')
-   const TaskToAdd = document.creatElement('li');
-  taskToAdd.innerHTML= `
-  <span>${temTexto}</span> 
-  <button onclick="">✍️</button>
-  <button onclick="">❌ </button>
-  <button onclick="">✔️</button>`;
-  taskList.appendChild(taskToAdd);
-taskList.innerHTML= `<li><span>${textInput.value.trim()}</span></li>`
+
+  if (temTexto !== '') {
+
+    const taskToAdd = document.createElement('li');
+
+    taskToAdd.innerHTML = `
+      <span>${temTexto}</span> 
+      <button onclick="editar(this)">✍️</button>
+      <button onclick="remover(this)">❌</button>
+      <button onclick="concluir(this)">fodase</button>
+    `;
+
+    taskList.appendChild(taskToAdd);
+
+    textInput.value = '';
+  }
 }
+
+function remover(button){
+  const itemRemove = button.parentElement;
+  taskList.removeChild(itemRemove)
+}
+function concluir(button){
+  const itemToMark = button.parentElement;
+  itemTomark.classList = 'completed';
+}
+
